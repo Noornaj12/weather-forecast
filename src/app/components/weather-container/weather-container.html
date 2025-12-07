@@ -8,6 +8,8 @@
 }
 <!-- Forecast -->
 @if(store.forecast().length){
-<h2>Forecast for {{ store.city() }}</h2>
-<app-forecast-list [forecast]="store.forecast()"></app-forecast-list>
+<div class="forecast-container">
+  <h2>5-Day Weather Forecast for {{ store.city() }}</h2>
+  <app-forecast-list [forecast]="store.forecast()"></app-forecast-list>
+</div>
 }

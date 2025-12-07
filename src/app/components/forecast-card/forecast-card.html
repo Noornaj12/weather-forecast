@@ -1,12 +1,9 @@
 <article class="card">
   <div class="date">{{ day.date | date : 'dd/MM/yy' }}</div>
   <img [src]="day.icon" class="icon" />
-  <div>
-    <span>{{ day.tempMax | round }} / </span>
-    <span>{{ day.tempMin | round }} °C</span>
-  </div>
+
   <strong>Temprature: {{ day.temp | round }} °C</strong>
 
-  <div>Wind: {{ day.windSpeed | round }} m/s</div>
-  <div>{{ day.description }}</div>
+  <div>Wind Speed: {{ day.windSpeed | round }} m/s</div>
+  <div>{{ day.description | titlecase }}</div>
 </article>
