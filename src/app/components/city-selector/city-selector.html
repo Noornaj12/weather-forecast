@@ -1,0 +1,9 @@
+<label>Select City:</label>
+<select [(ngModel)]="selectedCity" (change)="onCityChange(selectedCity)">
+  <option [ngValue]="null">-- Please select a city --</option>
+  @for(city of cities; track $index){
+  <option [ngValue]="city">
+    {{ city }}
+  </option>
+  }
+</select>

@@ -1,0 +1,13 @@
+<!-- Loader -->
+@if(store.loading()){
+<app-loader></app-loader>
+}
+<!-- Error -->
+@if(store.error()){
+<div>{{ store.error() }}</div>
+}
+<!-- Forecast -->
+@if(store.forecast().length){
+<h2>Forecast for {{ store.city() }}</h2>
+<app-forecast-list [forecast]="store.forecast()"></app-forecast-list>
+}
