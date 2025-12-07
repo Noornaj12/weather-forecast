@@ -6,34 +6,32 @@ import { API_URL, API_KEY, UNIT } from './constants';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
-
   constructor(private http: HttpClient) {}
 
-   getForecast(city: City): Observable<WeatherForecast[]> {    
-    return this.http.get<OpenWeatherResponse>(API_URL, {params:{
-        q:city,
-        appid:API_KEY,
-        units:UNIT
-    }}).pipe(
-      map(response => this.toDailySummary(response))
-    );
+  getForecast(city: City): Observable<WeatherForecast[]> {
+    return this.http
+      .get<OpenWeatherResponse>(API_URL, {
+        params: {
+          q: city,
+          appid: API_KEY,
+          units: UNIT,
+        },
+      })
+      .pipe(map((response) => this.toDailySummary(response)));
   }
-
 
   toDailySummary(data: OpenWeatherResponse): WeatherForecast[] {
     const map: { [key: string]: WeatherForecast } = {};
 
-    data.list.forEach(item => {
+    data.list.forEach((item) => {
       const date = item.dt_txt.split(' ')[0];
       if (!map[date]) {
         map[date] = {
           date,
           temp: item.main.temp,
-          tempMin: item.main.temp_min,
-          tempMax: item.main.temp_max,
           windSpeed: item.wind.speed,
           description: item.weather[0].description,
-          icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`
+          icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
         };
       }
     });

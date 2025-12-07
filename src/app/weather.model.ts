@@ -1,17 +1,14 @@
 export type City = 'London' | 'Birmingham' | 'Cardiff';
 
-
-export type WeatherForecast ={
+export type WeatherForecast = {
   date: string;
   temp: number;
-  tempMin: number;
-  tempMax: number;
   windSpeed: number;
   description: string;
   icon: string;
-}
+};
 
-export type OpenWeatherResponse ={
+export type OpenWeatherResponse = {
   list: Array<{
     dt: number;
     dt_txt: string;
@@ -28,6 +25,4 @@ export type OpenWeatherResponse ={
       speed: number;
     };
   }>;
-}
-
-
+};
