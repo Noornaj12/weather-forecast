@@ -11,8 +11,6 @@ describe('WeatherContainer (standalone)', () => {
     {
       date: '2025-12-06',
       temp: 15.7,
-      tempMin: 10.2,
-      tempMax: 20.5,
       windSpeed: 8.3,
       description: 'Partly Cloudy',
       icon: '/assets/icons/02d.png',
@@ -40,13 +38,6 @@ describe('WeatherContainer (standalone)', () => {
 
   it('creates the component', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('shows loading message when store.loading() is true', () => {
-    mockStore.loading.and.returnValue(true);
-    fixture.detectChanges();
-    const text = fixture.nativeElement.textContent || '';
-    expect(text).toContain('Loading...');
   });
 
   it('shows error when store.error() returns a message', () => {

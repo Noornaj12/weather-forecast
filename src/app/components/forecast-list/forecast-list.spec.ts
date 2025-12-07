@@ -11,8 +11,6 @@ describe('ForecastList (standalone)', () => {
     {
       date: '2025-12-06',
       temp: 12.4,
-      tempMin: 8.1,
-      tempMax: 14.6,
       windSpeed: 4.2,
       description: 'Sunny',
       icon: '/assets/icons/01d.png',
@@ -20,8 +18,6 @@ describe('ForecastList (standalone)', () => {
     {
       date: '2025-12-07',
       temp: 9.9,
-      tempMin: 6.0,
-      tempMax: 11.3,
       windSpeed: 3.1,
       description: 'Cloudy',
       icon: '/assets/icons/03d.png',
