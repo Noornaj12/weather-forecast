@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { City, OpenWeatherResponse, WeatherForecast } from './weather.model';
-import { API_URL, API_KEY, UNIT } from './constants';
+import { environment } from '../environments/environments';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
@@ -10,18 +10,18 @@ export class WeatherService {
 
   getForecast(city: City): Observable<WeatherForecast[]> {
     return this.http
-      .get<OpenWeatherResponse>(API_URL, {
+      .get<OpenWeatherResponse>(environment.weatherApi.url, {
         params: {
           q: city,
-          appid: API_KEY,
-          units: UNIT,
+          appid: environment.weatherApi.key,
+          units: environment.weatherApi.units,
         },
       })
       .pipe(map((response) => this.toDailySummary(response)));
   }
 
   toDailySummary(data: OpenWeatherResponse): WeatherForecast[] {
-    const map: { [key: string]: WeatherForecast } = {};
+    const map: Record<string, WeatherForecast> = {};
 
     data.list.forEach((item) => {
       const date = item.dt_txt.split(' ')[0];

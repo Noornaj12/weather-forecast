@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeatherStore } from '../../weather.store';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { City } from '../../weather.model';
 })
 export class CitySelector {
   selectedCity: City | null = null;
-  cities: City[] = ['Birmingham', 'London', 'Cardiff'];
 
   constructor(public store: WeatherStore) {}
 

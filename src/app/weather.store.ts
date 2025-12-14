@@ -9,6 +9,7 @@ export class WeatherStore {
   forecast = signal<WeatherForecast[]>([]);
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
+  cities: City[] = ['Birmingham', 'London', 'Cardiff'];
 
   constructor(private api: WeatherService) {
     // Effect: when city changes → load weather
@@ -32,14 +33,14 @@ export class WeatherStore {
     this.error.set(null);
 
     this.api.getForecast(city).subscribe({
-      next: (data:WeatherForecast[]) => {
+      next: (data: WeatherForecast[]) => {
         this.forecast.set(data);
         this.loading.set(false);
       },
       error: (err: Error) => {
         this.error.set(err?.message || 'Failed to load weather');
         this.loading.set(false);
-      }
+      },
     });
   }
 }
