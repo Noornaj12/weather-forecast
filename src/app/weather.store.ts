@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
 import { WeatherService } from './weather.service';
-import { City, WeatherForecast } from './weather.model';
-import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { City } from './weather.model';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { catchError, filter, finalize, of, switchMap, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
