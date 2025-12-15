@@ -29,8 +29,10 @@ export class WeatherStore {
       }),
       tap(() => this.loading.set(false)),
       takeUntilDestroyed()
-    )
+    ),
+    { initialValue: [] }
   );
+
   constructor(private api: WeatherService) {}
 
   setCity(city: City | null) {
