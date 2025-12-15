@@ -1,6 +1,6 @@
 <article class="card">
   <div class="date">{{ day.date | date : 'dd/MM/yy' }}</div>
-  <img [src]="day.icon" class="icon" />
+  <img [alt]="day.description" [src]="day.icon" class="icon" />
 
   <strong>Temprature: {{ day.temp | round }} °C</strong>
 
