@@ -14,8 +14,12 @@ export class WeatherStore {
 
   forecast = toSignal(
     toObservable(this.city).pipe(
-      filter((city): city is City => !!city),
       switchMap((city) => {
+        if (!city) {
+          this.loading.set(false);
+          this.error.set(null);
+          return of([]); // <-- resets forecast
+        }
         this.loading.set(true);
         this.error.set(null);
         return this.api.getForecast(city).pipe(
