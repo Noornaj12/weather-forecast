@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { City } from './weather.model';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
