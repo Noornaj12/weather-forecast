@@ -21,12 +21,12 @@ export class WeatherService {
   }
 
   toDailySummary(data: OpenWeatherResponse): WeatherForecast[] {
-    const map: Record<string, WeatherForecast> = {};
+    const dailyForecastMap: Record<string, WeatherForecast> = {};
 
     data.list.forEach((item) => {
       const date = item.dt_txt.split(' ')[0];
-      if (!map[date]) {
-        map[date] = {
+      if (!dailyForecastMap[date]) {
+        dailyForecastMap[date] = {
           date,
           temp: item.main.temp,
           windSpeed: item.wind.speed,
@@ -36,6 +36,6 @@ export class WeatherService {
       }
     });
 
-    return Object.values(map).slice(0, 5);
+    return Object.values(dailyForecastMap).slice(0, 5);
   }
 }
