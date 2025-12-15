@@ -2,7 +2,7 @@ import { Injectable, signal, computed, effect } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { City, WeatherForecast } from './weather.model';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { catchError, filter, of, switchMap, tap } from 'rxjs';
+import { catchError, filter, finalize, of, switchMap, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherStore {
@@ -15,20 +15,17 @@ export class WeatherStore {
   forecast = toSignal(
     toObservable(this.city).pipe(
       filter((city): city is City => !!city),
-      tap(() => {
+      switchMap((city) => {
         this.loading.set(true);
         this.error.set(null);
-      }),
-      switchMap((city) => {
         return this.api.getForecast(city).pipe(
           catchError((err) => {
             this.error.set(err?.message || 'Failed to load weather');
             return of([]);
-          })
+          }),
+          finalize(() => this.loading.set(false))
         );
-      }),
-      tap(() => this.loading.set(false)),
-      takeUntilDestroyed()
+      })
     ),
     { initialValue: [] }
   );
